@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %} 
+
+<div class="row align-items-md-stretch mt-5">
+    <div class="col-12 justify-content-center align-content-center text-center">
+        <div class="text-white border rounded-4 shadow bg-danger fontsContenedores">
+            
+            <h1>Salas de reuniones</h1>
+           
+        </div>
+    </div>
+
+    {% comment %} <div class="col-12 justify-content-center align-content-center">
+        <div class="text-white border rounded-2 shadow bg-danger fontsContenedores py-2 d-flex justify-content-center">
+            
+            
+            <form method="GET" action="{% url 'buscar_salas' %}">
+                <input type="text" name='nombre' placeholder="Nombre">
+                <input type="number" name="capacidad_min" placeholder="Capacidad mínima">
+                <input type="number" name="capacidad_max" placeholder="Capacidad máxima">
+                <input type="text" name='equipo' placeholder="Equipo">
+                
+                <button type="submit" class=' btn btn-warning'>Buscar</button>
+            </form>
+            
+            
+            
+            
+        </div>
+    </div> {% endcomment %}
+
+    {% if salas%}
+    {% for sala in salas %}
+    <div class="col-12 col-lg-6 my-4 ">
+        <div class="shadow rounded-4">
+            <div class="text-white border rounded-top-4 shadow contenedorTituloSala bg-danger fontsContenedores">
+                <h2 class="text-center">Ticket {{sala.ticket_id}}</h2>
+            </div>
+            <div class="text-black border bg-white p-3 rounded-bottom-2">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Problema</th>
+                            <td>{{sala.ticket_problema}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Detalle</th>
+                            <td>{{sala.ticket_detalles}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Estado</th>
+                            <td>{{sala.ticket_estado}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Prioridad</th>
+                            <td>{{sala.ticket_prioridad}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tecnico Responsable</th>
+                            {% if sala.ticket_tecnico_responsable%}
+                                <td>{{sala.ticket_tecnico_responsable}}</td>
+                            {% else %}
+                                <td>No hay</td>
+                            {% endif %}
+
+                        </tr>
+
+                        
+                        
+                        
+
+                    </tbody>
+                </table>
+                <div class='justify-content-end align-content-end text-end'>
+
+                    <a
+                    name=""
+                    id=""
+                    class="btn btn-success"
+                    href=""
+                    role="button"
+                    >Resolver</a
+                    >
+                    <a
+                        name=""
+                        id=""
+                        class="btn btn-warning"
+                        href=""
+                        role="button"
+                        >Procesar</a
+                    >
+                    <a
+                        name=""
+                        id=""
+                        class="btn btn-danger btnEliminacion"
+                        href=""
+                        role="button"
+                        >Cerrar</a
+                    >
+                    <a
+                        name=""
+                        id=""
+                        class="btn btn-danger btnEliminacion"
+                        href=""
+                        role="button"
+                        >Eliminar</a
+                    >
+
+                </div>
+               
+                
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {%else%}
+        <div class='col-12 text-center my-5'>
+            <h1>NO HAY RESULTADOS</h1>
+        </div>
+    {%endif%}
+    
+    
+    <div class="col-12 my-4 ">
+        <div class="text-white rounded-5 shadow rounded-5">
+            <div class="d-grid gap-2">
+                <a
+                    name=""
+                    id=""
+                    class="btn btn-danger"
+                    href="" 
+                    role="button"
+                    >Agregar Sala</a
+                >
+                
+            </div>
+            
+           
+        </div>
+    </div>
+
+    
+
+
+{% endblock %}
